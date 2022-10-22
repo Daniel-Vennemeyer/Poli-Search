@@ -16,7 +16,6 @@ def index2():
     form = CookiesForm()
     # Default cookies policy to reject all categories of cookie
     cookies_policy = {"functional": "no", "analytics": "no"}
-
     if form.validate_on_submit():
         # Update cookies policy consent from form data
         cookies_policy["functional"] = form.functional.data
