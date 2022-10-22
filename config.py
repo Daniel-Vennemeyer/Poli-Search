@@ -11,4 +11,3 @@ class Config(object):
     THING_API_URL = os.environ.get("THING_API_URL")
     TIMEOUT = int(os.environ.get("TIMEOUT"))
 
-print("Hello World")
