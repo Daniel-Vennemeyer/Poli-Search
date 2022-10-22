@@ -18,11 +18,11 @@ def get_elections():
         return error
 
 def get_representatives():
-        try:
-            url = "https://www.googleapis.com/civicinfo/v2/representatives"
-            headers = {'X-goog-api-key': 'AIzaSyCJvZXYJQQlgH2YzinPMUpbD22NbKiD36k'}
-            query = {'address': '3038 Taylor Ave Cincinnati OH'}
-            req = requests.get(url, headers=headers, params=query)
+    try:
+        url = "https://www.googleapis.com/civicinfo/v2/representatives"
+        headers = {'X-goog-api-key': 'AIzaSyCJvZXYJQQlgH2YzinPMUpbD22NbKiD36k'}
+        query = {'address': '3038 Taylor Ave Cincinnati OH'}
+        req = requests.get(url, headers=headers, params=query)
 
         return req.json()["officials"]
     except Exception as e:
@@ -40,10 +40,6 @@ def search_officials(name):
     except Exception as e:
         error = f"{type(e).__name__} exception: {e.args!r}"
         return error
-
-# def get_official_photo(name):
-#     official = search_officials(name)
-#     return official['photoUrl'] if 'photoUrl' in official else "NO PHOTO"
 
 def get_official_photo(official):
     return official['photoUrl'] if 'photoUrl' in official else "NO PHOTO"
@@ -71,5 +67,6 @@ def get_wiki_info(official):
         return error
 
 data = get_elections()
-data = get_officials()
+data = search_officials()
 official = search_officials("joe biden")
+info = get_wiki_info(official)
