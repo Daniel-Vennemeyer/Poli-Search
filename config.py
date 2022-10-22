@@ -10,4 +10,3 @@ class Config(object):
     SESSION_COOKIE_SECURE = True
     THING_API_URL = os.environ.get("THING_API_URL")
     TIMEOUT = int(os.environ.get("TIMEOUT"))
-
