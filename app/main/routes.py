@@ -1,4 +1,4 @@
-from flask import current_app, flash, json, make_response, redirect, render_template, request
+from flask import current_app, flash, json, make_response, redirect, url_for, render_template, request
 from flask_wtf.csrf import CSRFError
 from werkzeug.exceptions import HTTPException
 
@@ -11,8 +11,8 @@ def index():
     return render_template("main/index.html")
 
 
-@bp.route("/cookies", methods=["GET", "POST"])
-def cookies():
+@bp.route("/index2", methods=["GET", "POST"])
+def index2():
     form = CookiesForm()
     # Default cookies policy to reject all categories of cookie
     cookies_policy = {"functional": "no", "analytics": "no"}
@@ -26,7 +26,7 @@ def cookies():
         flash("You’ve set your cookie preferences.", "success")
 
         # Create the response so we can set the cookie before returning
-        response = make_response(render_template("cookies.html", form=form))
+        response = make_response(render_template("index2.html", form=form))
 
         # Set cookies policy for one year
         response.set_cookie("cookies_policy", json.dumps(cookies_policy), max_age=31557600)
@@ -41,7 +41,7 @@ def cookies():
             # If conset not previously set, use default "no" policy
             form.functional.data = cookies_policy["functional"]
             form.analytics.data = cookies_policy["analytics"]
-    return render_template("cookies.html", title="Cookies", form=form)
+    return render_template("index2.html", title="Cookies", form=form)
 
 
 @bp.route("/privacy", methods=["GET"])
