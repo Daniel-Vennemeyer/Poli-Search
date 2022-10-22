@@ -17,7 +17,7 @@ def get_elections():
         error = f"{type(e).__name__} exception: {e.args!r}"
         return error
 
-def get_representatives():
+def get_officials():
     try:
         url = "https://www.googleapis.com/civicinfo/v2/representatives"
         headers = {'X-goog-api-key': 'AIzaSyCJvZXYJQQlgH2YzinPMUpbD22NbKiD36k'}
@@ -67,6 +67,6 @@ def get_wiki_info(official):
         return error
 
 data = get_elections()
-data = search_officials()
+data = get_officials()
 official = search_officials("joe biden")
 info = get_wiki_info(official)
