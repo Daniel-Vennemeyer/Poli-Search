@@ -1,4 +1,5 @@
 import requests
+from bs4 import BeautifulSoup
 from requests.auth import HTTPBasicAuth
 from difflib import SequenceMatcher
 
@@ -40,6 +41,38 @@ def search_officials(name):
         error = f"{type(e).__name__} exception: {e.args!r}"
         return error
 
+# def get_official_photo(name):
+#     official = search_officials(name)
+#     return official['photoUrl'] if 'photoUrl' in official else "NO PHOTO"
+
+def get_official_photo(official):
+    return official['photoUrl'] if 'photoUrl' in official else "NO PHOTO"
+
+def get_party(official):
+    return official['party'] if 'party' in official else "NO PARTY"
+
+def get_wiki_info(official):
+    try:
+        title = ''
+        urls = official['urls'] if 'urls' in official else ""
+        if urls:
+            for url in urls:
+                wiki_url = url if "wikipedia" in url else ""
+        if wiki_url:
+            response = requests.get(url=wiki_url)
+            soup = BeautifulSoup(response.content, 'html.parser')
+            # soup = BeautifulSoup(response.content, 'lxml')
+            title = soup.find(id="firstHeading")
+
+
+        return title.string
+    except Exception as e:
+        error = f"{type(e).__name__} exception: {e.args!r}"
+        return error
+
 data = get_elections()
 data = get_officials()
 official = search_officials("joe biden")
+official = search_officials("Rob Portman")
+wiki_info = get_wiki_info(official)
+photo = get_official_photo(official)
