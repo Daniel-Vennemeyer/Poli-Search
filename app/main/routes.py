@@ -22,12 +22,16 @@ def information():
     party = data_retrieval.get_party(official)
     info = data_retrieval.get_wiki_info(user_input)
     image = data_retrieval.get_image_name(party)
-    print(user_input)
-    print(officials_list)
-    print(official)
-    print(party)
-    print(info)
-    return render_template("information.html", title="Information", user_input=user_input, info=info, party=party, official=official, image=image)
+    id = data_retrieval.get_candidate_id(user_input)
+    news = data_retrieval.get_committees(id)
+    print(news)
+    #print(user_input)
+    #print(officials_list)
+    #print(official)
+    #print(party)
+    #print(info)
+    return render_template("information.html", title="Information", user_input=user_input, info=info, 
+    party=party, official=official, image=image, news=news)
 
 
 @bp.route("/survey", methods=["GET", "POST"])
@@ -50,7 +54,14 @@ def survey():
 
         lgbtq = request.form.get('LGBTQ')
         print(lgbtq)
-        
+        stances = []
+        stances.append(pol_stance)
+        stances.append(globali)
+        stances.append(abortion)
+        stances.append(fiscally)
+        stances.append(gun_law)
+        stances.append(lgbtq)
+    print(stances)
     return render_template("survey.html", title="Survey")
     
 
