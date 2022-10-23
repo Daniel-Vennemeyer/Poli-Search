@@ -1,6 +1,7 @@
 import requests
 from difflib import SequenceMatcher
 import wikipedia
+import flask
 
 def similar(a, b):
     return SequenceMatcher(None, a, b).ratio()
@@ -20,8 +21,8 @@ def get_officials():
     try:
         url = "https://www.googleapis.com/civicinfo/v2/representatives"
         headers = {'X-goog-api-key': 'AIzaSyCJvZXYJQQlgH2YzinPMUpbD22NbKiD36k'}
-        addresses = ['45040','Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois', 'Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana', 'Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Oklahoma','Oregon','Pennsylvania', 'Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming']
-
+        #addresses = ['45040','Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois', 'Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana', 'Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Oklahoma','Oregon','Pennsylvania', 'Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming']
+        addresses = ['45040']
         officials = []
         for address in addresses:
             query = {'address': address}
@@ -86,6 +87,12 @@ def get_wiki_info(name):
         error = f"{type(e).__name__} exception: {e.args!r}"
         return 'POLITICIAN NOT FOUND'
 
+def get_image_name(party):
+    if party == 'Republican Party':
+        image = flask.url_for('static', filename='republican.png')
+    else:
+        image = flask.url_for('static', filename='democratic.png')
+    return image
 
 officials_list = get_officials()
 # official = search_officials("joe biden", officials_list)

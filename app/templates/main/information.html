@@ -3,38 +3,12 @@
 {% block content %}
 
 <div id="col-1"> 
-    <img src={{url_for('static', filename='republican.png')}} alt="party">
+    <img src = {{image}} alt="party">
     <br>
-
+    <h1 id = "official">{{ official['name'] }}</h1>
+    <p id = "party">{{ party }}</p>
 </div>
 <div id="col-2"> 
     <p id = "info">{{ info[0] }}</p>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
 </div>
 {% endblock %}
