@@ -55,6 +55,21 @@ img-2 {
     height: 200px; width: 200px;
 }
 
+form {
+    font-family: 'Calibri', serif;
+    color: rgb(76,170,235);
+}
+
+label {
+    font-family: 'Calibri', serif;
+    color: rgb(0,0,0);
+}
+
+input {
+    font-family: 'Calibri', serif;
+    color: rgb(0, 0, 0);
+}
+
 body1 {
     font-family: 'Calibri', serif;
     color: rgb(0, 0, 0);
