@@ -22,16 +22,14 @@ def information():
     party = data_retrieval.get_party(official)
     info = data_retrieval.get_wiki_info(user_input)
     image = data_retrieval.get_image_name(party)
-    id = data_retrieval.get_candidate_id(user_input)
-    news = data_retrieval.get_committees(id)
-    print(news)
+    finances = data_retrieval.get_finances(user_input)
     #print(user_input)
     #print(officials_list)
     #print(official)
     #print(party)
     #print(info)
     return render_template("information.html", title="Information", user_input=user_input, info=info, 
-    party=party, official=official, image=image, news=news)
+    party=party, official=official, image=image, finances=finances)
 
 
 @bp.route("/survey", methods=["GET", "POST"])
