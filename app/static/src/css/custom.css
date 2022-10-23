@@ -2,12 +2,11 @@
 #mapid { height: 400px; }
 
 #col-1{
-    position: relative;
-    width: 30%;
-    left: 0%;
+    position: fixed;
+    width: 40%;
+    left: 12%;
     height: 100%;
     background-color: rgb(255, 255, 255);
-    z-index: 1010101010
   }
   
   #col-2{
@@ -20,7 +19,7 @@
   }
 
   #col-3 {
-    position: fixed;
+    position: sticky;
     width: 100%;
     left: 0%;
     height: 100%;
