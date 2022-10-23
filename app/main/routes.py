@@ -4,7 +4,9 @@ from werkzeug.exceptions import HTTPException
 
 from app.main import bp
 from app.main.forms import CookiesForm
+from app.main import data_retrieval
 
+global user_input
 
 @bp.route("/", methods=["GET", "POST"])
 def index():
@@ -13,20 +15,26 @@ def index():
 
 @bp.route("/information", methods=["POST"])
 def information():
-    print(request.form['user-input'])
-    form = CookiesForm()
-    return render_template("information.html", title="Information", form=form)
+    user_input = request.form['user-input']
+    #officials_list = data_retrieval.get_officials()
+    #official = data_retrieval.search_officials(user_input, officials_list)
+    #party = data_retrieval.get_party(official)
+    info = data_retrieval.get_wiki_info(user_input)
+    print(user_input)
+    #print(officials_list)
+    #print(official)
+    #print(party)
+    print(info)
+    return render_template("information.html", title="Information", user_input=user_input, info=info)
 
 
 @bp.route("/survey", methods=["GET", "POST"])
 def survey():
-    form = CookiesForm()
-    return render_template("survey.html", title="Survey", form=form)
+    return render_template("survey.html", title="Survey")
 
 @bp.route("/about_us", methods=["GET", "POST"])
 def about_us():
-    form = CookiesForm()
-    return render_template("about_us.html", title="About Us", form=form)
+    return render_template("about_us.html", title="About Us")
 
 
 @bp.route("/privacy", methods=["GET"])

@@ -1,6 +1,4 @@
 import requests
-from bs4 import BeautifulSoup
-from requests.auth import HTTPBasicAuth
 from difflib import SequenceMatcher
 import wikipedia
 
