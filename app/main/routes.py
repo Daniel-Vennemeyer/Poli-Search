@@ -25,7 +25,7 @@ def index3():
 @bp.route("/index4", methods=["GET", "POST"])
 def index4():
     form = CookiesForm()
-    return render_template("index4.html", title="Survey", form=form)
+    return render_template("index4.html", title="About Us", form=form)
 
 
 @bp.route("/privacy", methods=["GET"])
