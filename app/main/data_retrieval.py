@@ -94,6 +94,18 @@ def get_image_name(party):
         image = flask.url_for('static', filename='democratic.png')
     return image
 
-officials_list = get_officials()
+def get_stance(name):
+    try:
+        # url =  "https://api.propublica.org/congress/v1/"
+        url =  "https://api.open.fec.gov/developers"
+        # headers = {'X-Api-Key': 'szr3iTkQTg9eZYOhFwvWKB49mFlACXOzqMV7uJut'}
+        headers = {'X-API-Key': 'szr3iTkQTg9eZYOhFwvWKB49mFlACXOzqMV7uJut', "accept": "application/json"}
+        req = requests.get(url, headers=headers)
+    except Exception as e:
+        error = f"{type(e).__name__} exception: {e.args!r}"
+        return error
+
+# officials_list = get_officials()
 # official = search_officials("joe biden", officials_list)
-info = get_wiki_info("Joe Biden")
+# info = get_wiki_info("Joe Biden")
+info = get_stance("Joe Biden")
