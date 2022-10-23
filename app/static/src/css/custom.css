@@ -31,11 +31,14 @@ h1{
     color: rgb(76,170,235);
     font-family: 'Calibri', serif;
 }
+h3,h4{
+  color: rgb(76,170,235);
+}
 h2 {
   color: rgb(255, 255, 255);
   font-family: 'Calibri', serif;
 }
-title {
+head {
     font-family: 'Times New Roman', serif;
     color: rgb(76,170,235);
 }
