@@ -2,20 +2,20 @@
 #mapid { height: 400px; }
 
 #col-1{
-    position: fixed;
-    width: 50%;
+    position: relative;
+    width: 30%;
     left: 0%;
     height: 100%;
-    background-color: rgb(196, 196, 196);
+    background-color: rgb(255, 255, 255);
     z-index: 1010101010
   }
   
   #col-2{
-    position: fixed;
+    position: relative;
     width: 50%;
     left: 50%;
     height: 100%;
-    background-color: #a7a7a7;
+    background-color: #ffffff;
     z-index: 1010101010
   }
 
@@ -57,3 +57,4 @@ body1 {
     font-family: 'Calibri', serif;
     color: rgb(0, 0, 0);
 }
+
