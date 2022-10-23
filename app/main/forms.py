@@ -17,3 +17,4 @@ class CookiesForm(FlaskForm):
         default="no",
     )
     save = SubmitField("Save cookie settings")
+

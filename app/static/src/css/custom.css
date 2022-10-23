@@ -19,6 +19,15 @@
     z-index: 1010101010
   }
 
+  #col-3 {
+    position: fixed;
+    width: 100%;
+    left: 0%;
+    height: 100%;
+    background-color: #ffffffeb;
+    z-index: 1010101010
+  }
+
 h1{
     color: rgb(76,170,235);
     font-family: 'Calibri', serif;
@@ -31,7 +40,15 @@ title {
     font-family: 'Times New Roman', serif;
     color: rgb(76,170,235);
 }
+a {
+    font-family: 'Calibri', serif;
+    color: rgb(76,170,235);
+}
 img {
-    height: 234px; width: 300px;
+    height: 200px; width: 266px;
+}
+
+img2 {
+    height: 400px; width: 400px;
 }
 
