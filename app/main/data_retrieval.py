@@ -128,7 +128,7 @@ def get_filings(id):
 def get_history(id):
     try:
         key= "szr3iTkQTg9eZYOhFwvWKB49mFlACXOzqMV7uJut"
-        url = f"https://api.open.fec.gov/v1/candidate/{id}/history/?api_key={key}&election_full=true&sort_nulls_last=false&page=1&sort_hide_null=false&per_page=20&sort=-two_year_period&sort_null_only=false"
+        url = f"https://api.open.fec.gov/v1/candidate/{id}/?page=1&sort_nulls_last=false&sort=name&per_page=20&sort_null_only=false&api_key={key}&sort_hide_null=false"
         req = requests.get(url)
         return req.json()['results'][0]
     except Exception as e:
