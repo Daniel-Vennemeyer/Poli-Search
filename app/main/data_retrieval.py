@@ -110,7 +110,7 @@ def get_committees(id):
         key= "szr3iTkQTg9eZYOhFwvWKB49mFlACXOzqMV7uJut"
         url = f"https://api.open.fec.gov/v1/candidate/{id}/committees/?page=1&per_page=20&sort_null_only=false&api_key={key}&sort_nulls_last=false&sort_hide_null=false&sort=name"
         req = requests.get(url)
-        return req.json()['results'][0]
+        return req.json()['results'][0]['name']
     except Exception as e:
         error = f"{type(e).__name__} exception: {e.args!r}"
         return error
@@ -125,6 +125,17 @@ def get_filings(id):
         error = f"{type(e).__name__} exception: {e.args!r}"
         return error
 
+def get_committee_id(id):
+    try:
+        name = get_committees(id)
+        key= "szr3iTkQTg9eZYOhFwvWKB49mFlACXOzqMV7uJut"
+        url = f"https://api.open.fec.gov/v1/names/committees/?api_key={key}&q={name.replace(' ', '%20')}"
+        req = requests.get(url)
+        return req.json()['results'][0]['id']
+    except Exception as e:
+        error = f"{type(e).__name__} exception: {e.args!r}"
+        return error
+
 def get_history(id):
     try:
         key= "szr3iTkQTg9eZYOhFwvWKB49mFlACXOzqMV7uJut"
@@ -135,6 +146,23 @@ def get_history(id):
         error = f"{type(e).__name__} exception: {e.args!r}"
         return error
 
+def get_finances(name):
+    try:
+        committee_id = get_committee_id(get_candidate_id("Robert Portman"))
+        key= "szr3iTkQTg9eZYOhFwvWKB49mFlACXOzqMV7uJut"
+        url = f"https://api.open.fec.gov/v1/committee/{committee_id}/totals/?api_key={key}&sort_nulls_last=false&page=1&sort_hide_null=false&per_page=20&sort=-cycle&sort_null_only=false"
+        req = requests.get(url)
+        finances = req.json()['results'][0]
+        fin_str = ""
+        for item in finances:
+            fin_str += f"{item}: {finances[item]}\n"
+        return fin_str
+    except Exception as e:
+        error = f"{type(e).__name__} exception: {e.args!r}"
+        return error
+
 
 id = get_candidate_id("Robert Portman")
-info = get_history(id)
+info = get_committee_id(id)
+# finances = get_finances(info)
+finances = get_finances("Robert Portman")

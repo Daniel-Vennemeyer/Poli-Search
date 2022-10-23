@@ -79,6 +79,15 @@ def survey():
         else:
             print(f"You are {(repub_count*100//5)}% Republican")
         
+        print(lgbtq)
+        stances = []
+        stances.append(pol_stance)
+        stances.append(globali)
+        stances.append(abortion)
+        stances.append(fiscally)
+        stances.append(gun_law)
+        stances.append(lgbtq)
+    print(stances)
     return render_template("survey.html", title="Survey")
     
 
