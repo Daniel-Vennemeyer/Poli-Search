@@ -14,33 +14,18 @@ def index():
 @bp.route("/index2", methods=["GET", "POST"])
 def index2():
     form = CookiesForm()
-    # Default cookies policy to reject all categories of cookie
-    cookies_policy = {"functional": "no", "analytics": "no"}
-    if form.validate_on_submit():
-        # Update cookies policy consent from form data
-        cookies_policy["functional"] = form.functional.data
-        cookies_policy["analytics"] = form.analytics.data
+    return render_template("index2.html", title="Information", form=form)
 
-        # Create flash message confirmation before rendering template
-        flash("You’ve set your cookie preferences.", "success")
 
-        # Create the response so we can set the cookie before returning
-        response = make_response(render_template("index2.html", form=form))
+@bp.route("/index3", methods=["GET", "POST"])
+def index3():
+    form = CookiesForm()
+    return render_template("index3.html", title="Survey", form=form)
 
-        # Set cookies policy for one year
-        response.set_cookie("cookies_policy", json.dumps(cookies_policy), max_age=31557600)
-        return response
-    elif request.method == "GET":
-        if request.cookies.get("cookies_policy"):
-            # Set cookie consent radios to current consent
-            cookies_policy = json.loads(request.cookies.get("cookies_policy"))
-            form.functional.data = cookies_policy["functional"]
-            form.analytics.data = cookies_policy["analytics"]
-        else:
-            # If conset not previously set, use default "no" policy
-            form.functional.data = cookies_policy["functional"]
-            form.analytics.data = cookies_policy["analytics"]
-    return render_template("index2.html", title="Cookies", form=form)
+@bp.route("/index4", methods=["GET", "POST"])
+def index4():
+    form = CookiesForm()
+    return render_template("index4.html", title="Survey", form=form)
 
 
 @bp.route("/privacy", methods=["GET"])
