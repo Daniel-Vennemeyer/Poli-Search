@@ -108,8 +108,27 @@ def get_candidate_id(name):
 def get_committees(id):
     try:
         key= "szr3iTkQTg9eZYOhFwvWKB49mFlACXOzqMV7uJut"
-        # fname,lname=name.split(" ")
         url = f"https://api.open.fec.gov/v1/candidate/{id}/committees/?page=1&per_page=20&sort_null_only=false&api_key={key}&sort_nulls_last=false&sort_hide_null=false&sort=name"
+        req = requests.get(url)
+        return req.json()['results'][0]
+    except Exception as e:
+        error = f"{type(e).__name__} exception: {e.args!r}"
+        return error
+
+def get_filings(id):
+    try:
+        key= "szr3iTkQTg9eZYOhFwvWKB49mFlACXOzqMV7uJut"
+        url = f"https://api.open.fec.gov/v1/candidate/{id}/filings/?page=1&sort_nulls_last=false&sort=-receipt_date&per_page=20&sort_null_only=false&api_key={key}&sort_hide_null=false"
+        req = requests.get(url)
+        return req.json()['results'][0]
+    except Exception as e:
+        error = f"{type(e).__name__} exception: {e.args!r}"
+        return error
+
+def get_history(id):
+    try:
+        key= "szr3iTkQTg9eZYOhFwvWKB49mFlACXOzqMV7uJut"
+        url = f"https://api.open.fec.gov/v1/candidate/{id}/history/?api_key={key}&election_full=true&sort_nulls_last=false&page=1&sort_hide_null=false&per_page=20&sort=-two_year_period&sort_null_only=false"
         req = requests.get(url)
         return req.json()['results'][0]
     except Exception as e:
@@ -118,4 +137,4 @@ def get_committees(id):
 
 
 id = get_candidate_id("Robert Portman")
-info = get_committees(id)
+info = get_history(id)
