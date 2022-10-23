@@ -10,8 +10,9 @@
 <h1><center>Poli Search</center></h1>
 <br>
 <body><center>
-    <form action = "{{ url_for('main.index2') }}">
-        <input type="text" name="user input">
+    <form action = "{{ url_for('main.information') }}" method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <input type="text" name="user-input">
         <input type = "Submit" value="Search">
     </form>
 </body></center>

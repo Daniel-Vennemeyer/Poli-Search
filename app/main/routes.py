@@ -6,26 +6,27 @@ from app.main import bp
 from app.main.forms import CookiesForm
 
 
-@bp.route("/", methods=["GET"])
+@bp.route("/", methods=["GET", "POST"])
 def index():
     return render_template("main/index.html")
 
 
-@bp.route("/index2", methods=["GET", "POST"])
-def index2():
+@bp.route("/information", methods=["POST"])
+def information():
+    print(request.form['user-input'])
     form = CookiesForm()
-    return render_template("index2.html", title="Information", form=form)
+    return render_template("information.html", title="Information", form=form)
 
 
-@bp.route("/index3", methods=["GET", "POST"])
-def index3():
+@bp.route("/survey", methods=["GET", "POST"])
+def survey():
     form = CookiesForm()
-    return render_template("index3.html", title="Survey", form=form)
+    return render_template("survey.html", title="Survey", form=form)
 
-@bp.route("/index4", methods=["GET", "POST"])
-def index4():
+@bp.route("/about_us", methods=["GET", "POST"])
+def about_us():
     form = CookiesForm()
-    return render_template("index4.html", title="About Us", form=form)
+    return render_template("about_us.html", title="About Us", form=form)
 
 
 @bp.route("/privacy", methods=["GET"])
