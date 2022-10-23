@@ -72,11 +72,10 @@ def survey():
             repub_count += 1 
 
         if demo_count > repub_count:
-            print(f"You are {(demo_count*100//5)}% Democratic")
-        
+            result = (f"You are {(demo_count*100//5)}% Democratic")
         else:
-            print(f"You are {(repub_count*100//5)}% Republican")
-        
+            result = (f"You are {(demo_count*100//5)}% Democratic")
+        data_retrieval.get_sim_value(result)
         stances = []
         stances.append(pol_stance)
         stances.append(abortion)

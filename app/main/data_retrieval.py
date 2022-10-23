@@ -94,6 +94,9 @@ def get_image_name(party):
         image = flask.url_for('static', filename='democratic.png')
     return image
 
+def get_sim_value(surveyresult = "Survey result - N/A"):
+    return surveyresult
+
 def get_candidate_id(name):
     try:
         key= "szr3iTkQTg9eZYOhFwvWKB49mFlACXOzqMV7uJut"
