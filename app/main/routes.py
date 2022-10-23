@@ -1,3 +1,4 @@
+from glob import glob
 from flask import current_app, flash, json, make_response, redirect, url_for, render_template, request
 from flask_wtf.csrf import CSRFError
 from werkzeug.exceptions import HTTPException
@@ -31,7 +32,27 @@ def information():
 
 @bp.route("/survey", methods=["GET", "POST"])
 def survey():
+    if request.method == "POST": 
+        pol_stance = request.form.get('pol-stance')
+        print(pol_stance)
+
+        globali = request.form.get('global')
+        print(globali)
+
+        abortion = request.form.get('abortion')
+        print(abortion)
+
+        fiscally = request.form.get('fiscally')
+        print(fiscally)
+
+        gun_law = request.form.get('gun_law')
+        print(gun_law)
+
+        lgbtq = request.form.get('LGBTQ')
+        print(lgbtq)
+        
     return render_template("survey.html", title="Survey")
+    
 
 @bp.route("/about_us", methods=["GET", "POST"])
 def about_us():
