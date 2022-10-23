@@ -36,24 +36,48 @@ def information():
 
 @bp.route("/survey", methods=["GET", "POST"])
 def survey():
+    demo_count, repub_count = 0, 0
     if request.method == "POST": 
         pol_stance = request.form.get('pol-stance')
-        print(pol_stance)
+        if pol_stance == "Democratic":
+            demo_count += 1
 
-        globali = request.form.get('global')
-        print(globali)
+        else:
+            repub_count += 1    
 
         abortion = request.form.get('abortion')
-        print(abortion)
+        if abortion == "Pro-choice":
+            demo_count += 1
+
+        else:
+            repub_count += 1 
 
         fiscally = request.form.get('fiscally')
-        print(fiscally)
+        if fiscally == "Fiscally-liberal":
+            demo_count += 1
+
+        else:
+            repub_count += 1 
 
         gun_law = request.form.get('gun_law')
-        print(gun_law)
+        if gun_law == "Yes":
+            demo_count += 1
+
+        else:
+            repub_count += 1 
 
         lgbtq = request.form.get('LGBTQ')
-        print(lgbtq)
+        if lgbtq == "Yes":
+            demo_count += 1
+
+        else:
+            repub_count += 1 
+
+        if demo_count > repub_count:
+            print(f"You are {(demo_count*100//5)}% Democratic")
+        
+        else:
+            print(f"You are {(repub_count*100//5)}% Republican")
         
     return render_template("survey.html", title="Survey")
     
