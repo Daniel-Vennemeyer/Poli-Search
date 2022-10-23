@@ -6,11 +6,14 @@
 <br>
 
 
-<form>
+<form action = "{{ url_for('main.survey') }}" method="post">
+
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    
     1) What is your political stance?<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="demo" name="pol_stance" value="Democratic">
+    &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="demo" name="pol-stance" value="Democratic">
     <label for="demo">Democratic</label><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="repub" name="pol_stance" value="Republican">
+    &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="repub" name="pol-stance" value="Republican">
     <label for="repub">Republican</label><br>
 
     <br>
@@ -39,7 +42,7 @@
     &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="yes" name="gun_law" value="Yes">
     <label for="yes">Yes</label><br>
     &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="no" name="gun_law" value="No">
-    <label for="no">No</label><br>    
+    <label for="no">No</label><br>
 
     <br>
     6) Do you support LGBTQ rights?<br>
@@ -52,5 +55,7 @@
     <input type="submit" value="Submit">
 
 </form>
+
+
 
 {% endblock %}
