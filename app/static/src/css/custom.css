@@ -18,3 +18,16 @@
     background-color: #0080ff;
     z-index: 1010101010
   }
+
+h1 {
+    color: rgb(76,170,235);
+    font-family: 'Calibri', serif;
+}
+title {
+    font-family: 'Times New Roman', serif;
+    color: rgb(76,170,235);
+}
+img {
+    height: 200px; width: 266px;
+}
+
