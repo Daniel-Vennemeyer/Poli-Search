@@ -1,33 +1,37 @@
 /* Your custom CSS goes here... */
 #mapid { height: 400px; }
 
-#col-1 {
+#col-1{
     position: fixed;
     width: 50%;
     left: 0%;
     height: 100%;
-    background-color: plum;
+    background-color: rgb(196, 196, 196);
     z-index: 1010101010
   }
   
-  #col-2 {
+  #col-2{
     position: fixed;
     width: 50%;
     left: 50%;
     height: 100%;
-    background-color: #0080ff;
+    background-color: #a7a7a7;
     z-index: 1010101010
   }
 
-h1 {
+h1{
     color: rgb(76,170,235);
     font-family: 'Calibri', serif;
+}
+h2 {
+  color: rgb(255, 255, 255);
+  font-family: 'Calibri', serif;
 }
 title {
     font-family: 'Times New Roman', serif;
     color: rgb(76,170,235);
 }
 img {
-    height: 200px; width: 266px;
+    height: 234px; width: 300px;
 }
 
