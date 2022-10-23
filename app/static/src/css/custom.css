@@ -1,2 +1,6 @@
 /* Your custom CSS goes here... */
 #mapid { height: 400px; }
+
+h1 {
+    color: #f00;
+}
