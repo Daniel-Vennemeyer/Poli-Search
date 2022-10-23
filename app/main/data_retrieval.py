@@ -94,18 +94,28 @@ def get_image_name(party):
         image = flask.url_for('static', filename='democratic.png')
     return image
 
-def get_stance(name):
+def get_candidate_id(name):
     try:
-        # url =  "https://api.propublica.org/congress/v1/"
-        url =  "https://api.open.fec.gov/developers"
-        # headers = {'X-Api-Key': 'szr3iTkQTg9eZYOhFwvWKB49mFlACXOzqMV7uJut'}
-        headers = {'X-API-Key': 'szr3iTkQTg9eZYOhFwvWKB49mFlACXOzqMV7uJut', "accept": "application/json"}
-        req = requests.get(url, headers=headers)
+        key= "szr3iTkQTg9eZYOhFwvWKB49mFlACXOzqMV7uJut"
+        fname,lname=name.split(" ")
+        url = f"https://api.open.fec.gov/v1/names/candidates/?api_key={key}&q={fname}%20{lname}"
+        req = requests.get(url)
+        return req.json()["results"][0]['id']
     except Exception as e:
         error = f"{type(e).__name__} exception: {e.args!r}"
         return error
 
-# officials_list = get_officials()
-# official = search_officials("joe biden", officials_list)
-# info = get_wiki_info("Joe Biden")
-info = get_stance("Joe Biden")
+def get_committees(id):
+    try:
+        key= "szr3iTkQTg9eZYOhFwvWKB49mFlACXOzqMV7uJut"
+        # fname,lname=name.split(" ")
+        url = f"https://api.open.fec.gov/v1/candidate/{id}/committees/?page=1&per_page=20&sort_null_only=false&api_key={key}&sort_nulls_last=false&sort_hide_null=false&sort=name"
+        req = requests.get(url)
+        return req.json()['results'][0]
+    except Exception as e:
+        error = f"{type(e).__name__} exception: {e.args!r}"
+        return error
+
+
+id = get_candidate_id("Robert Portman")
+info = get_committees(id)
