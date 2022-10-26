@@ -1,5 +1,5 @@
 from glob import glob
-from flask import current_app, flash, json, make_response, redirect, url_for, render_template, request
+from flask import current_app, flash, json, make_response, redirect, session, url_for, render_template, request
 from flask_wtf.csrf import CSRFError
 from werkzeug.exceptions import HTTPException
 
@@ -29,7 +29,7 @@ def information():
     #print(party)
     #print(info)
     return render_template("information.html", title="Information", user_input=user_input, info=info, 
-    party=party, official=official, image=image, finances=finances)
+    party=party, official=official, image=image, finances=finances, result=session['result'])
 
 
 @bp.route("/survey", methods=["GET", "POST"])
@@ -72,17 +72,10 @@ def survey():
             repub_count += 1 
 
         if demo_count > repub_count:
-            print(f"You are {(demo_count*100//5)}% Democratic")
-        
+            result = (f"You are {(demo_count*100//5)}% Democratic")
         else:
-            print(f"You are {(repub_count*100//5)}% Republican")
-        
-        stances = []
-        stances.append(pol_stance)
-        stances.append(abortion)
-        stances.append(fiscally)
-        stances.append(gun_law)
-        stances.append(lgbtq)
+            result = (f"You are {(repub_count*100//5)}% Republican")
+        session['result'] = result
 
     return render_template("survey.html", title="Survey")
     
