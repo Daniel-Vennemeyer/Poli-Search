@@ -93,7 +93,8 @@ wrapt==1.14.1
     # via deprecated
 wtforms==3.0.1
     # via flask-wtf
-    wikipedia==1.4.0
+wikipedia-api==0.5.4
+
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
