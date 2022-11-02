@@ -19,21 +19,8 @@ def index():
 # @bp.route("/information", methods=["GET", "POST"])
 @bp.route("/information", methods=["POST"])
 def information():
-    # # user_input = "Joe Biden"
-    #
-    # official = data_retrieval.official(user_input)
-    # party = official.party
-    # image = official.get_image_name()
-    # info = official.get_wiki_info()
-    # finances = official.get_finances()
-    # return render_template("information.html", title="Information", user_input=user_input, info=info,
-    #                        party=party, official=official, image=image, finances=finances, result="")
-
-    if request.method == "POST":
+    # if request.method == "POST":
         user_input = request.form['user-input']
-        # user_input = request.form.get('user-input')
-        # user_input = session["user_input"]
-        # user_input = "Joe Biden"
 
         official = data_retrieval.official(user_input)
         party = official.party
@@ -41,10 +28,10 @@ def information():
         info = official.get_wiki_info()
         finances = official.get_finances()
         return render_template("information.html", title="Information", user_input=user_input, info=info,
-                               party=party, official=official, image=image, finances=finances, result=result)
-    else:
-        return render_template("information.html", title="", user_input="", info="",
-                           party="", official="", image="", finances="", result="")
+                               party=party, official=official, image=image, finances=finances, result=session['result'])
+    # else:
+    #     return render_template("information.html", title="", user_input="", info="",
+    #                        party="", official="", image="", finances="", result="")
 
 
 @bp.route("/survey", methods=["GET", "POST"])
@@ -57,40 +44,6 @@ def survey():
         dem_count += 1 if request.form.get('fiscally') == "Fiscally-liberal" else 0
         dem_count += 1 if request.form.get('gun_law') == "Yes" else 0
         dem_count += 1 if request.form.get('LGBTQ') == "Yes" else 0
-        # pol_stance = request.form.get('pol-stance')
-        # if pol_stance == "Democratic":
-        #     demo_count += 1
-        # else:
-        #     repub_count += 1
-
-        # abortion = request.form.get('abortion')
-        # if abortion == "Pro-choice":
-        #     demo_count += 1
-        # else:
-        #     repub_count += 1
-
-        # fiscally = request.form.get('fiscally')
-        # if fiscally == "Fiscally-liberal":
-        #     demo_count += 1
-        # else:
-        #     repub_count += 1
-
-        # gun_law = request.form.get('gun_law')
-        # if gun_law == "Yes":
-        #     demo_count += 1
-        # else:
-        #     repub_count += 1
-
-        # lgbtq = request.form.get('LGBTQ')
-        # if lgbtq == "Yes":
-        #     demo_count += 1
-        # else:
-        #     repub_count += 1
-
-        # if demo_count > repub_count:
-        #     result = (f"You are {(demo_count * 100 // 5)}% Democratic")
-        # else:
-        #     result = (f"You are {(repub_count * 100 // 5)}% Republican")
 
         if dem_count > 3:
             result = (f"You are {(dem_count * 100 // 5)}% Democratic")
