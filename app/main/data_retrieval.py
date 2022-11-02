@@ -108,7 +108,7 @@ class official():
             return error
 
 
-official = official("Bernie Sanders")
+# official = official("Bernie Sanders")
 # info = official.get_wiki_info()
 # id = official.get_candidate_id("Bernie Sanders")
 # info = official.get_committee_id(id)
