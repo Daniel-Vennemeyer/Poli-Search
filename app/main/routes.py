@@ -19,15 +19,15 @@ def index():
 # @bp.route("/information", methods=["GET", "POST"])
 @bp.route("/information", methods=["POST"])
 def information():
-    user_input = "Joe Biden"
-
-    official = data_retrieval.official(user_input)
-    party = official.party
-    image = official.get_image_name()
-    info = official.get_wiki_info()
-    finances = official.get_finances()
-    return render_template("information.html", title="Information", user_input=user_input, info=info,
-                           party=party, official=official, image=image, finances=finances, result="")
+    # # user_input = "Joe Biden"
+    #
+    # official = data_retrieval.official(user_input)
+    # party = official.party
+    # image = official.get_image_name()
+    # info = official.get_wiki_info()
+    # finances = official.get_finances()
+    # return render_template("information.html", title="Information", user_input=user_input, info=info,
+    #                        party=party, official=official, image=image, finances=finances, result="")
 
     if request.method == "POST":
         user_input = request.form['user-input']
